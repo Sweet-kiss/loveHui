@@ -1,61 +1,137 @@
 <template>
   <div class="allDongta">
-    <div class="dongItem">
+    <div class="dongItem" v-for="item in dynamics">
         <div class="head_top">
           <div class="head_left">
             <ul>
-              <li><span class="head_img"><img src="./img/headimg.jpg" alt=""></span></li>
-              <li class="peopleName">子辰手绘</li>
+              <li><span class="head_img"><img :src="'/static/headimg/'+item.head_img" alt=""></span></li>
+              <li class="peopleName">{{item.name}}</li>
               <li><span class="guanZhu">+ 已关注</span></li>
             </ul>
           </div>
-          <div class="header_right"><span>07-15 12:30</span></div>
+          <div class="header_right"><span>{{item.time}}</span></div>
         </div>
-        <div class="cent_text"><p>喜欢我画的就给个赞呗!</p></div>
+        <div class="cent_text"><p>{{item.test}}</p></div>
         <div class="peo_img">
-           <ul>
-             <li><img src="./img/peo_img/peo_01.png" alt=""></li>
-             <li><img src="./img/peo_img/peo_02.png" alt=""></li>
-             <li><img src="./img/peo_img/peo_03.png" alt=""></li>
-             <li><img src="./img/peo_img/peo_04.png" alt=""></li>
-             <li><img src="./img/peo_img/peo_05.png" alt=""></li>
-           </ul>
+          <div class="img_wrapper">
+              <div class="img_padding">
+                 <div class="img_position">
+                    <img class="img_p" src="./img/peo_img/peo_01.png" alt="">
+                 </div>
+              </div>
+          </div>
+          <div class="img_wrapper">
+              <div class="img_padding">
+                 <div class="img_position">
+                    <img class="img_p" src="./img/peo_img/peo_02.png" alt="">
+                 </div>
+              </div>
+          </div>
+          <div class="img_wrapper">
+              <div class="img_padding">
+                 <div class="img_position">
+                    <img class="img_p" src="./img/peo_img/peo_03.png" alt="">
+                 </div>
+              </div>
+          </div>
+          <div class="img_wrapper">
+              <div class="img_padding">
+                 <div class="img_position">
+                    <img class="img_p" src="./img/peo_img/peo_04.png" alt="">
+                 </div>
+              </div>
+          </div>
+          <div class="img_wrapper">
+              <div class="img_padding">
+                 <div class="img_position">
+                    <img class="img_p" src="./img/peo_img/peo_05.png" alt="">
+                 </div>
+              </div>
+          </div>
         </div>
         <div class="work_name">
            <ul>
-             <li>作品名：色彩静物</li>
-             <li>分类：水粉</li>
-             <li>作者寄语：爱生活，文艺清新</li>
+             <li>作品名：{{item.workname}}</li>
+             <li>分类：{{item.classification}}</li>
+             <li>作者寄语：{{item.message}}</li>
            </ul>
         </div>
         <div class="peo_praise">
-          <div>
-              <ul>
-                <li><span><img src="" alt=""></span></li>
-                <li><span><img src="" alt=""></span></li>
-                <li><span><img src="" alt=""></span></li>
-                <li><span><img src="" alt=""></span></li>
-              </ul>
-          </div>
+             <div class="head_wrapper">
+               <div class="head_padding">
+                 <div class="head_position">
+                    <img class="header_img" src="./header/header01.png" alt="">
+                 </div>
+               </div>
+             </div>
+             <div class="head_wrapper">
+               <div class="head_padding">
+                 <div class="head_position">
+                    <img class="header_img" src="./header/header02.png" alt="">
+                 </div>
+               </div>
+             </div>
+             <div class="head_wrapper">
+               <div class="head_padding">
+                 <div class="head_position">
+                    <img class="header_img" src="./header/header03.png" alt="">
+                 </div>
+               </div>
+             </div>                          
         </div>
+
+        <div class="thumbs-up_wrapper">
+           <div class="thumbs-up_left">
+              <div class="up_btn">
+                 <i class="ub_img"><img src="./btn/thumb_up.png" alt=""></i>
+                 <span class="up_b">点赞</span>
+                 <em>4</em>
+              </div>
+           </div>
+           <div class="thumbs-up_right">
+              <i class="ub_img"><img src="./btn/comment.png" alt=""></i>
+              <span class="comment_b">评论</span>
+              <em>6</em>
+           </div>
+        </div>
+
     </div>
   </div>
 </template>
 
 <script>
+
+const ERR_OK = 0
+
 export default {
-  name: 'allDongta'
+  name: 'allDongta',
+  data () {
+    return {
+      dynamics: {}
+    }
+  },
+  created () {
+    this.$http.get('/api/dynamics').then((response) => {
+      response = response.body
+      if (response.erron === ERR_OK) {
+        this.dynamics = response.data
+        console.log(this.dynamics)
+      }
+    })
+  }
 }
 </script>
 
 <style scoped>
-.allDongta {
+.dongItem {
   width:96%;
   margin: 3px auto;
   padding: 3px;
   background-color: #fff;
   border: #efeeee solid 1px;
   overflow: hidden;
+  margin-bottom: 5px;
+  margin-bottom: 10px;
 }
 .head_top {
   display: flex;
@@ -114,16 +190,26 @@ export default {
   font-size: 14px;
   line-height: 17px;
 }
-.peo_img ul li {
-  float: left;
+.img_wrapper {
   width: 33.3%;
-  height: 80px;
-  margin-bottom: 0.3rem;
-  text-align: center;
-  overflow: hidden;
+  float: left;
 }
-.peo_img ul li img {
-  width: 98%;
+.img_padding {
+  padding-top: 100%;
+  position: relative;
+}
+.img_position {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  bottom: 2px;
+  left: 2px;
+  font-size: 0;
+}
+.img_p {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 .work_name {
   clear: both;
@@ -132,5 +218,49 @@ export default {
   font-size: 13px;
   margin-bottom: 4px;
   color: #666664;
+}
+.peo_praise {
+  width: 100%;
+  background-color: green;
+}
+.head_wrapper {
+  width: 7%;
+  float: left;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.head_padding {
+  padding-top: 100%;
+  position: relative;
+}
+.head_position {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  font-size: 0;
+}
+.header_img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.thumbs-up_wrapper {
+  clear: both;
+  display: flex;
+}
+.thumbs-up_left,.thumbs-up_right {
+  flex: 1;
+ text-align: center;
+}
+.up_b,.comment_b {
+  display: inline-block;
+  height: 40px;
+  line-height: 40px;
+}
+.ub_img {
+  display: inline-block;
+  vertical-align: middle;
 }
 </style>

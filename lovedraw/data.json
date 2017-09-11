@@ -1,0 +1,28 @@
+{
+	"dynamic":[
+		{
+            "head_img":"header01.png",
+			"name":"子辰手绘",
+			"time":"07-15 12:30",
+			"test":"喜欢我画的就给个赞呗",
+			"workname":"色彩静物",
+			"classification":"水粉",
+			"message":"爱生活，文艺清晰",
+			"drawimg":[
+				{"img":"peo_01.png"}
+				{"img":"peo_02.png"}
+				{"img":"peo_03.png"}
+				{"img":"peo_04.png"}
+			]
+        },
+        {
+        	"head_img":"header02.png",
+			"name":"爱画画的二喵",
+			"time":"07-14 10:10",
+			"test":"这绝对的原创啦",
+			"workname":"色彩静物2",
+			"classification":"水粉",
+			"message":"静谧生活，爱色彩"
+        }
+	]
+}
