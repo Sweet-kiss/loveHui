@@ -1,6 +1,8 @@
 <template>
-  <div id="drawMy">
-    <h2>我是我的页面</h2>
+  <div class="drawMy">
+    <div class="myhead">
+
+    </div>
   </div>
 </template>
 
@@ -11,5 +13,9 @@ export default {
 </script>
 
 <style>
-
+.myhead {
+	width: 100%;
+	height: 200px;
+	background-color: yellow;
+}
 </style>

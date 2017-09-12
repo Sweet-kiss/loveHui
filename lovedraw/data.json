@@ -7,14 +7,8 @@
 			"test":"喜欢我画的就给个赞呗",
 			"workname":"色彩静物",
 			"classification":"水粉",
-			"message":"爱生活，文艺清晰",
-			"drawimg":[
-				{"img":"peo_01.png"}
-				{"img":"peo_02.png"}
-				{"img":"peo_03.png"}
-				{"img":"peo_04.png"}
-			]
-        },
+			"message":"爱生活，文艺清晰"
+	    },
         {
         	"head_img":"header02.png",
 			"name":"爱画画的二喵",
