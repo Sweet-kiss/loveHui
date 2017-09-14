@@ -12,17 +12,20 @@
        </ul>
     </div>
     <div class="suo_wrapper">
-        <div class="suo_w">
+        <div class="suo_w"  v-for="(item, index) in lists">
            <div class="suo_padding">
              <div class="suo_position">
-                 <img class="suo_img" src="./suolue/suo01.png" alt="">
+                 <img class="suo_img" :src="item" alt="">
              </div>
            </div>
-           <span class="delete_img">-</span>
+           <span @click="remove(index)" class="delete_img">-</span>
         </div>
     </div>
     <div class="btn_w">
-       <div class="btn_default"><span class="btn_add">+添加图片</span></div>
+       <div class="room_add_img">
+         <span>添加图片</span>
+         <input  type="file" @change="selectFileChange" accept="image/png, image/jpeg">
+       </div>
        <div class="btn_default"><span class="btn_push">发布</span></div>
     </div>
   </div>
@@ -30,14 +33,27 @@
 
 <script>
 import TopMain from '@/components/spare/topMain/topMain'
-
 export default {
   data () {
     return {
+      lists: []
     }
   },
   components: {
     TopMain
+  },
+  methods: {
+    selectFileChange (event) {
+      let reader = new FileReader()
+      console.log(event.target.files.length)
+      reader.readAsDataURL(event.target.files[0])
+      reader.onload = (e) => {
+        this.lists.push(e.target.result)
+      }
+    },
+    remove (index) {
+      this.lists.splice(index, 1)
+    }
   }
 }
 </script>
@@ -45,7 +61,7 @@ export default {
 <style>
 .pub_text {
   width:95%;
-  height: 160px;
+  height: 80px;
   margin: 5px auto;
   overflow: hidden;
 }
@@ -131,7 +147,7 @@ export default {
   flex:1;
   text-align: center;
 }
-.btn_add,.btn_push{
+.btn_push{
   display: inline-block;
   width: 60%;
   margin: 0 auto;
@@ -144,4 +160,37 @@ export default {
   background-color: #fb6e84;
   color: white;
 }
+
+.room_add_img{
+  flex:1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+.room_add_img >span:nth-child(1){
+  margin: 0 auto;
+  width: 60%;
+  text-align: center;
+  padding: 15px;
+  border:#fb6e84 solid 1px;
+  color: #fb6e84;
+  border-radius: 30px;
+  overflow: hidden;
+}
+.room_add_img >span:nth-child(2){
+  margin-bottom: 10px;
+}
+
+.room_add_img input{
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 99999;
+  opacity: 0;
+}
+
 </style>

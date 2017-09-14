@@ -6,6 +6,8 @@ import Publish from '@/components/publish/publish'
 import DrawMy from '@/components/drawMy/drawMy'
 import AllDongta from '@/components/bace/allDongta/allDongta'
 import MyGuanzhu from '@/components/bace/myGuanzhu/myGuanzhu'
+import MyDongtai from '@/components/bace/myDongtai/myDongtai'
+import MyWork from '@/components/bace/myWork/myWork'
 Vue.use(Router)
 
 export default new Router({
@@ -42,7 +44,20 @@ export default new Router({
         {
           path: '/homeAll/drawMy',
           name: 'drawMy',
-          component: DrawMy
+          component: DrawMy,
+          redirect: '/homeAll/drawMy/myDongtai',
+          children: [
+            {
+              path: '/homeAll/drawMy/myDongtai',
+              name: 'myDongtai',
+              component: MyDongtai
+            },
+            {
+              path: '/homeAll/drawMy/myWork',
+              name: 'myWork',
+              component: MyWork
+            }
+          ]
         }
       ]
     }

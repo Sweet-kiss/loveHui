@@ -6,7 +6,7 @@
             <ul>
               <li><span class="head_img"><img :src="'/static/headimg/'+item.head_img" alt=""></span></li>
               <li class="peopleName">{{item.name}}</li>
-              <li><span class="guanZhu">+ 已关注</span></li>
+              <li><span class="guanZhu">已关注</span></li>
             </ul>
           </div>
           <div class="header_right"><span>{{item.time}}</span></div>
@@ -176,14 +176,14 @@ export default {
 .guanZhu {
   display: block;
   width: 60px;
-  height: 30px;
-  line-height: 30px;
+  height: 26px;
+  line-height: 26px;
   background-color: #2fdbff;
-  font-size: 13px;
+  font-size: 10px;
   text-align: center;
-  border-radius: 3px;
+  border-radius: 15px;
   color: #fff;
-  margin-top: 5px;
+  margin-top: 8px;
 }
 .cent_text {
   padding: 5px 3px;
@@ -249,6 +249,7 @@ export default {
 .thumbs-up_wrapper {
   clear: both;
   display: flex;
+  padding: 10px 0px;
 }
 .thumbs-up_left,.thumbs-up_right {
   flex: 1;
@@ -256,11 +257,28 @@ export default {
 }
 .up_b,.comment_b {
   display: inline-block;
-  height: 40px;
-  line-height: 40px;
+  height: 20px;
+  line-height: 20px;
+  font-size: 14px;
+  margin-right: 5px;
+}
+.thumbs-up_left {
+  border-right: #ccc solid 1px;
+}
+.thumbs-up_left em,.thumbs-up_right em {
+  font-style: normal;
+  font-size: 14px;
 }
 .ub_img {
   display: inline-block;
+  width: 20px;
+  height: 20px;
   vertical-align: middle;
+  margin-top: -2px;
+  overflow: hidden;
+  margin-right: 10px;
+}
+.ub_img img {
+  width: 100%;
 }
 </style>
