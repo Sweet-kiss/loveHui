@@ -1,12 +1,12 @@
 <template>
-  <div class="allDongta">
-    <div class="dongItem" v-for="item in dynamics">
+  <div class="myGuanzhu">
+        <div class="dongItem" v-for="item in dynamics">
         <div class="head_top">
           <div class="head_left">
             <ul>
               <li><span class="head_img"><img :src="'/static/headimg/'+item.head_img" alt=""></span></li>
               <li class="peopleName">{{item.name}}</li>
-              <li><span class="guanZhu">已关注</span></li>
+              <li><span class="guanZhu">+ 已关注</span></li>
             </ul>
           </div>
           <div class="header_right"><span>{{item.time}}</span></div>
@@ -56,7 +56,8 @@
              <li>作者寄语：{{item.message}}</li>
            </ul>
         </div>
-        <div class="peo_praise">
+
+<!--         <div class="peo_praise">
              <div class="head_wrapper">
                <div class="head_padding">
                  <div class="head_position">
@@ -78,14 +79,14 @@
                  </div>
                </div>
              </div>                          
-        </div>
+        </div> -->
 
         <div class="thumbs-up_wrapper">
-           <div class="thumbs-up_left">
+           <div class="thumbs-up_left" v-for="ifo in lists">
               <div class="up_btn">
-                 <i class="ub_img"><img src="./btn/thumb_up.png" alt=""></i>
-                 <span class="up_b">点赞</span>
-                 <em>4</em>
+                 <i class="ub_imgadd" @click="updian()"  :class="{active: ifo.status === 'like'}"></i>
+                 <span class="up_b">{{ifo.text}}</span>
+                 <em>{{ifo.number}}</em>
               </div>
            </div>
            <div class="thumbs-up_right">
@@ -104,10 +105,16 @@
 const ERR_OK = 0
 
 export default {
-  name: 'allDongta',
   data () {
     return {
-      dynamics: {}
+      dynamics: {},
+      lists: [
+        {
+          status: 'dislike',
+          text: '点赞',
+          number: 0
+        }
+      ]
     }
   },
   created () {
@@ -118,6 +125,18 @@ export default {
         console.log(this.dynamics)
       }
     })
+  },
+  methods: {
+    updian () {
+      if (this.lists[0].status === 'like') {
+        this.lists[0].status = 'dislike'
+        this.lists[0].number--
+        console.log(this.lists.status)
+      } else {
+        this.lists[0].number++
+        this.lists[0].status = 'like'
+      }
+    }
   }
 }
 </script>
@@ -176,14 +195,14 @@ export default {
 .guanZhu {
   display: block;
   width: 60px;
-  height: 26px;
-  line-height: 26px;
+  height: 30px;
+  line-height: 30px;
   background-color: #2fdbff;
-  font-size: 10px;
+  font-size: 13px;
   text-align: center;
-  border-radius: 15px;
+  border-radius: 3px;
   color: #fff;
-  margin-top: 8px;
+  margin-top: 5px;
 }
 .cent_text {
   padding: 5px 3px;
@@ -249,7 +268,6 @@ export default {
 .thumbs-up_wrapper {
   clear: both;
   display: flex;
-  padding: 10px 0px;
 }
 .thumbs-up_left,.thumbs-up_right {
   flex: 1;
@@ -257,28 +275,36 @@ export default {
 }
 .up_b,.comment_b {
   display: inline-block;
-  height: 20px;
-  line-height: 20px;
-  font-size: 14px;
-  margin-right: 5px;
-}
-.thumbs-up_left {
-  border-right: #ccc solid 1px;
-}
-.thumbs-up_left em,.thumbs-up_right em {
-  font-style: normal;
-  font-size: 14px;
+  height: 40px;
+  line-height: 40px;
 }
 .ub_img {
   display: inline-block;
-  width: 20px;
-  height: 20px;
+  width: 30px;
   vertical-align: middle;
-  margin-top: -2px;
-  overflow: hidden;
-  margin-right: 10px;
+
 }
 .ub_img img {
   width: 100%;
+}
+.ub_imgadd {
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  vertical-align: middle; 
+  overflow: hidden;
+  background-color: yellow;
+  background:url("./thumb/up01.png");
+  background-size: 100% 100%;
+  margin-top: -5px;
+}
+.ub_imgadd:hover, .ub_imgadd.active {
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  vertical-align: middle;
+  overflow: hidden;
+  background:url("./thumb/up02.png");
+  background-size: 100% 100%;
 }
 </style>
