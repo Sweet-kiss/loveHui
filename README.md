@@ -31,7 +31,7 @@ mysql
 *发布页面
 *个人中心页
 ## 项目展示
-![Alt text](https://github.com/Sweet-kiss/master/loveHui/喵恋绘设计图/登录/登录.png)
+![Alt text](https://github.com/Sweet-kiss/loveHui/blob/master/喵恋绘设计图/登录/登录.jpg)
 ## 有问题反馈
 在使用中有任何问题，欢迎反馈给我，可以用以下联系方式跟我交流
 
