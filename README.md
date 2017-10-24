@@ -14,8 +14,8 @@
 ## 主要运用的技术
 前端技术栈
 Vue全家桶/es6
-* vue-router路由跳转
-* Vue Resource/axios异步接口请求
+vue-router路由跳转
+Vue Resource/axios异步接口请求
 后端技术栈
 *node.js/Express
 *mysql数据库
