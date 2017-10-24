@@ -17,9 +17,8 @@ Vue全家桶/es6
 * vue-router路由跳转
 * Vue Resource/axios异步接口请求
 后端技术栈
-node.js/Express
-数据库
-mysql
+*node.js/Express
+*mysql数据库
 ## 项目开发流程
 * 原型设计
 * 高保真psd效果图设计
